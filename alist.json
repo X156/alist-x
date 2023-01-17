@@ -1,0 +1,471 @@
+//一木整合源
+//代码主体为云星日记
+
+
+
+{
+  "lives": [{
+    "group": "redirect",
+    "channels": [{
+      "name": "live",
+      "urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly9yYXcuaXFpcS5pby9DeXJpbDA1NjMvbGFuamluZ19saXZlL21haW4vVFZib3hfRnJlZS9MSVZFL0ZyZWUvdHZib3hfbGl2ZS50eHQ="]
+    }]
+  }],
+
+  "wallpaper": "http://maoyingshi.cc/api.php",
+
+
+  "spider": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E6%8E%A8%E8%8D%90%E5%8C%85jar/%E6%8E%A8%E8%8D%90%E5%8C%85.jar",
+  //推荐包
+
+
+
+  "spider": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%9B%B4%E6%92%ADjar/%E7%9B%B4%E6%92%AD.jar",
+  //直播包
+
+
+
+
+
+
+  // 首页推荐视频 (豆瓣)
+  "recommend": [{
+    "name": "豆瓣推荐",
+    "request": {
+      "method": "GET",
+      "header": [{
+        "key": "Referer",
+        "value": "https://movie.douban.com/"
+      }],
+      "url": {
+        "raw": "https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&playable=1&start=0&year_range=2022,2022"
+      }
+    },
+    "response": {
+      "result": "$.data",
+      "data": [{
+        "key": "name",
+        "value": "title"
+      },
+        {
+          "key": "note",
+          "value": "rate"
+        },
+        {
+          "key": "pic",
+          "value": "cover"
+        }]
+    },
+    "expires": "86400"
+  }],
+
+
+  // 首页推荐视频 (IMDb Popular Movies)
+  "recommend": [{
+    "name": "imdb",
+    "request": {
+      "method": "GET",
+      "url": {
+        "raw": "https://imdb-api.com/en/API/MostPopularMovies/k_1kz039kt"
+      }
+    },
+    "response": {
+      "result": "$.items",
+      "data": [{
+        "key": "name",
+        "value": "title"
+      },
+        {
+          "key": "note",
+          "value": "imDbRating"
+        },
+        {
+          "key": "pic",
+          "value": "image"
+        }]
+    },
+    "expires": "86400"
+  }],
+
+
+  // 评分 (数据来自 豆瓣)
+  "rating": [{
+    "name": "rating",
+    "request": {
+      "method": "GET",
+      "url": {
+        "raw": "https://api.wmdb.tv/api/v1/movie/search?q={name}&limit=1"
+      }
+    },
+    "response": {
+      "result": "this",
+      "data": [{
+        "key": "rating",
+        "value": "doubanRating"
+      }]
+    }
+  }],
+
+
+  // 输入法智能联想接口
+  //"association": [],
+
+  // 中文分词接口
+  "pullWord": [{
+    "name": "pullWord",
+    "request": {
+      "method": "GET",
+      "url": {
+        "raw": "http://api.pullword.com/get.php?source={source}&param1=0&param2=0&json=1"
+      }
+    },
+    "response": {
+      "data": [{
+        "key": "keyword",
+        "value": "t"
+      }]
+    }
+  }],
+
+  // 字幕格式 (可选)
+  "subtitle": {
+    "color": "#FFFFFF",
+    "size": "30"
+  },
+
+
+
+
+  "sites": [{
+      "密钥":"CSP_Alist1",
+      "name":"个人网盘",
+      "类型":3,
+      "api":"CSP_Alist",
+      "可搜索":1,
+      "快速搜索":0,
+      "可过滤":0,
+      "ext":"https://ghproxy.com/https://raw.githubusercontent.com/X156/alist-x/main/alist2.json"
+    },
+    {
+      "key": "小纸条1",
+      "name": "📃小纸条1",
+      "type": 3,
+      "api": "csp_Gitcafe",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/%E5%B0%8F%E7%BA%B8%E6%9D%A11.jar"
+    },
+    {
+      "key": "小纸条2",
+      "name": "📃小纸条2",
+      "type": 3,
+      "api": "csp_Gitcafe",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/%E5%B0%8F%E7%BA%B8%E6%9D%A12.jar"
+    },
+    {
+      "key": "Upyunso",
+      "name": "☁️up搜(仅搜索）",
+      "type": 3,
+      "api": "csp_Upyunso",
+      "playerType": 1,
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar": "https://raw.iqiq.io/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/up%E2%98%81%EF%B8%8F.jar"
+    },
+    {
+      "key": "csp_Zhaozy",
+      "name": "🔍找资源（仅支持搜索）",
+      "type": 3,
+      "api": "csp_Zhaozy",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/%E6%89%BE%E8%B5%84%E6%BA%90.jar"
+    },
+    {
+      "key": "csp_AliPS",
+      "name": "📀喵盘搜️(仅支持搜索）",
+      "type": 3,
+      "api": "csp_AliPS",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar": "https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/%E5%96%B5%E7%9B%98%E6%90%9C.jar"
+    },
+    {
+      "key":"csp_Yisou",
+      "name":"🔎易搜（仅支持搜索）",
+      "type":3,
+      "api":"csp_Yisou",
+      "searchable":1,
+      "quickSearch":1,
+      "filterable":0,
+      "ext":"https://gitee.com/yimuyimuszjzj/yimuy/raw/master/token.txt",
+      "jar":"https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/%E4%B8%80%E6%9C%A8%E6%BA%90/JAR/%E7%BD%91%E7%9B%98jar/%E9%80%9A%E7%94%A8.jar"
+    },
+    {
+      "key": "csp_Alist2",
+      "name": "网盘仓库2",
+      "type": 3,
+      "api": "csp_Alist",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": "https://ghproxy.com/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/alist.json"
+    },
+    {
+      "key":"csp_Alist3",
+      "name":"小雅搜索",
+      "type":3,
+      "api":"https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/一木源/JAR/网盘jar/小雅搜索.js",
+      "searchable":1,
+      "quickSearch":1,
+      "filterable":0,
+      "ext":"https://ghproxy.com/https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/一木源/JSON/网盘包/小雅搜索.json"
+    }]
+
+  "parses": [{
+    "name": "解析聚合",
+    "type": 3,
+    "url": "Demo"
+  },
+    {
+      "name": "Json并发",
+      "type": 2,
+      "url": "Parallel"
+    },
+    {
+      "name": "Json轮询",
+      "type": 2,
+      "url": "Sequence"
+    },
+    {
+      "name":"Q1解析",
+      "type":1,
+      "url":"https://parse.ikunfk.cc/parse/sign/8698eafb816d87f28262c8e280c71078?url=",
+      "header": {
+        "User-Agent":"Mozilla/5.0"
+      }},
+    {
+      "name":"刚刚走过",
+      "type":1,
+      "url":"http://jx.fuqizhishi.com:63/API.php?appkey=feimao&url="
+    },
+    {
+      "name":"爱酷嗅探",
+      "type":0,
+      "url":"https://jx.zhanlangbu.com/?url="
+    },
+    {
+      "name":"麒麟",
+      "type":0,
+      "url":"https://www.cygqw.com/jiexi/jiekou-2/?url="
+    },
+    {
+      "name":"4K",
+      "url":"https://jx.4kdv.com/?url=",
+      "showType":1
+    },
+    {
+      "name":"高速接口",
+      "url":"https://jsap.attakids.com/?url=",
+      "showType":3
+    },
+    {
+      "name":"综合/B站",
+      "url":"https://jx.bozrc.com:4433/player/?url=",
+      "showType":3
+    },
+    {
+      "name":"keyu",
+      "type":1,
+      "url":"http://newjiexi.gotka.top/keyu3.php?url=",
+      "ext": {
+        "flag":["qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"],
+        "header": {
+          "User-Agent":"okhttp/4.1.0"
+        }}}],
+  "ijk": [{
+    "group": "软解码",
+    "options": [{
+      "category": 4,
+      "name": "opensles",
+      "value": "0"
+    },
+      {
+        "category": 4,
+        "name": "overlay-format",
+        "value": "842225234"
+      },
+      {
+        "category": 4,
+        "name": "framedrop",
+        "value": "1"
+      },
+      {
+        "category": 4,
+        "name": "soundtouch",
+        "value": "1"
+      },
+      {
+        "category": 4,
+        "name": "start-on-prepared",
+        "value": "1"
+      },
+      {
+        "category": 1,
+        "name": "http-detect-range-support",
+        "value": "0"
+      },
+      {
+        "category": 1,
+        "name": "fflags",
+        "value": "fastseek"
+      },
+      {
+        "category": 2,
+        "name": "skip_loop_filter",
+        "value": "48"
+      },
+      {
+        "category": 4,
+        "name": "reconnect",
+        "value": "1"
+      },
+      {
+        "category": 4,
+        "name": "enable-accurate-seek",
+        "value": "0"
+      },
+      {
+        "category": 4,
+        "name": "mediacodec",
+        "value": "0"
+      },
+      {
+        "category": 4,
+        "name": "mediacodec-auto-rotate",
+        "value": "0"
+      },
+      {
+        "category": 4,
+        "name": "mediacodec-handle-resolution-change",
+        "value": "0"
+      },
+      {
+        "category": 4,
+        "name": "mediacodec-hevc",
+        "value": "0"
+      },
+      {
+        "category": 1,
+        "name": "dns_cache_timeout",
+        "value": "600000000"
+      }]
+  },
+    {
+      "group": "硬解码",
+      "options": [{
+        "category": 4,
+        "name": "opensles",
+        "value": "0"
+      },
+        {
+          "category": 4,
+          "name": "overlay-format",
+          "value": "842225234"
+        },
+        {
+          "category": 4,
+          "name": "framedrop",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "soundtouch",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "start-on-prepared",
+          "value": "1"
+        },
+        {
+          "category": 1,
+          "name": "http-detect-range-support",
+          "value": "0"
+        },
+        {
+          "category": 1,
+          "name": "fflags",
+          "value": "fastseek"
+        },
+        {
+          "category": 2,
+          "name": "skip_loop_filter",
+          "value": "48"
+        },
+        {
+          "category": 4,
+          "name": "reconnect",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "enable-accurate-seek",
+          "value": "0"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-auto-rotate",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-handle-resolution-change",
+          "value": "1"
+        },
+        {
+          "category": 4,
+          "name": "mediacodec-hevc",
+          "value": "1"
+        },
+        {
+          "category": 1,
+          "name": "dns_cache_timeout",
+          "value": "600000000"
+        }]
+    }],
+  "ads": ["xhikun.top"]
+}
