@@ -11,6 +11,7 @@
 4.nplayer播放器下载链接:https://xhnb.lanzoul.com/iNClB0lfpvra  
 ### 三.下载播放器后如何使用  
 只需要点击视频底下第四个图标，即可选择使用专业播放器播放  
+![](https://xh-1306028009.cos.ap-beijing.myqcloud.com/IMG_20230119_231635.jpg)  
 
 
 
