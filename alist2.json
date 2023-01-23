@@ -2,7 +2,7 @@
   "drives": [
     {
       "name": "个人网盘",
-      "server": "http://xhikun.top:5244"
+      "server": "http://192.168.1.9:5244"
     }
   ]
 }
